@@ -1,0 +1,42 @@
+<header class="site-header" role="banner">
+
+  <div class="wrapper">
+    {% assign default_paths = site.pages | map: "path" %}
+    {% assign page_paths = site.header_pages | default: default_paths %}
+
+    {% if page_paths %}
+      <nav class="navbar white material">
+        <div class="container">
+          <div class="nav-logo">
+            <a class="nav-link animated">{{ site.title | escape }}</a>
+          </div>
+          <a class="nav-burger" href="#nav-mobile"><i class="fas fa-bars"></i></a>
+          <div class="nav-menu">
+            {% for path in page_paths %}
+              {% assign my_page = site.pages | where: "path", path | first %}
+              {% if my_page.title %}
+              <a class="nav-link animated" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+        </div>
+      </nav>
+
+      <div class="nav-mobile" id="nav-mobile">
+        <div class="nav-body">
+          <a class="nav-close" href="#!"><i class="fa fa-times"></i></a>
+          <h1>{{ site.title | escape }}</h1>
+          <br />
+          {% for path in page_paths %}
+            {% assign my_page = site.pages | where: "path", path | first %}
+            {% if my_page.title %}
+            <a class="animated" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+            <br />
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</header>
