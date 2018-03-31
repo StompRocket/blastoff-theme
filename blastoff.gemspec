@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "blastoff"
-  spec.version       = "1.0.1"
+  spec.version       = "1.0.2"
   spec.authors       = ["Sasha S"]
   spec.email         = ["sasha@stomprocket.io"]
 
   spec.summary       = "A simple Jekyll theme built with Blast Off"
-  spec.homepage      = "https://github.com/jekyll/minima"
+  spec.homepage      = "https://github.com/StompRocket/blastoff-theme/"
   spec.license       = "MIT"
 
   spec.metadata["plugin_type"] = "theme"
