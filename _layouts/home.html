@@ -10,10 +10,15 @@ layout: default
   <h2>{{ page.list_title | default: "Posts" }}</h2>
   {% for post in site.posts %}
   <div class="box material">
+    <div class="container">
     <h4>{{ post.title | escape }}</h4>
     {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
     <span class="post-meta">{{ post.date | date: date_format }}</span>
     <br />
+    </div>
+    {% if post.image %}
+      <img src="{{ site.baseurl }}/{{ post.image }}">
+    {% endif %}
     <br />
     {{ post.excerpt }}
     <a  href="{{ post.url | relative_url }}">Read More <i class="fas fa-angle-right"></i></a>
