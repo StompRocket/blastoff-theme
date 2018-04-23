@@ -10,6 +10,8 @@ $gray-accent: #f9f9f9;
 
 $primary: #2cceea;;
 $primary-accent: #17c0eb;
+$blue: #4949f4;
+$blue-accent: #3434ef;
 
 
 /* Responsive design */
@@ -116,25 +118,43 @@ h6 {
 }
 
 a {
-  color: #537bf4;
+  color: $blue;
   text-decoration: none;
+  transition: all .2s ease-in;
+
+  &:hover {
+    transition: all .2s ease-out;
+    box-shadow:  0 -1px 0 0 white inset, 0 -2px 0 0 $blue inset ;
+  }
+
+  &::selection {
+    color: white; background: $blue;
+    text-shadow: none;
+  }
+  &:visited {
+    color: $blue;
+    text-decoration: none;
+    text-shadow: none;
+  }
 }
 
-a:hover {
-  color: #446dea;
+a.minimal {
+  color: $blue;
   text-decoration: none;
-}
-a:focus {
-  color: #446dea;
-  text-decoration: none;
-}
-a:active {
-  color: #446dea;
-  text-decoration: none;
-}
-a:visited {
-  color: #446dea;
-  text-decoration: none;
+  box-shadow: none!important;
+  &:hover {
+    text-decoration: underline;
+    color: $blue;
+  }
+
+  &::selection {
+    color: white; background: $blue;
+    text-decoration: underline;
+  }
+  &:visited {
+    color: $blue;
+    text-decoration: underline;
+  }
 }
 
 /* Grid System */
@@ -286,6 +306,7 @@ pre>code {
   background: transparent;
 }
 pre code {
+  all: unset;
   display: inline;
   max-width: auto;
   padding: 0;
@@ -302,7 +323,7 @@ pre code::after {
 .box {
   border: .5px solid $gray-accent;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0px;
   -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.19);
      -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.19);
           box-shadow: 0 8px 6px -6px rgba(0,0,0,0.19);
@@ -323,6 +344,12 @@ pre code::after {
   -webkit-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
      -moz-box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+.box .container {
+  padding: 10px;
+}
+
+
 
 a.animated {
   position: relative;
@@ -452,6 +479,8 @@ table tr:nth-child(2n) {
   overflow: hidden;
   padding: 15px;
   align-items: center;
+  vertical-align: middle;
+  position: relative;
 }
 .navbar.fixed {
   right: 0;
@@ -459,6 +488,11 @@ table tr:nth-child(2n) {
   top: 0;
   position: fixed;
   z-index: 50;
+}
+.nav-link {
+  position: absolute;
+  top: 50%;
+  transition: translateY(-50%);
 }
 .nav-logo {
   float: left;
@@ -653,7 +687,7 @@ table tr:nth-child(2n) {
   border-radius: 5px;
   text-decoration: none;
   vertical-align: middle;
-  color: #576574;
+  color: #576574!important;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -671,6 +705,7 @@ table tr:nth-child(2n) {
   outline: none;
 }
 
+
 .button.primary {
   border: 1px solid $primary;
   background: $primary;
@@ -680,7 +715,7 @@ table tr:nth-child(2n) {
   border-radius: 5px;
   text-decoration: none;
   vertical-align: middle;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -693,7 +728,6 @@ table tr:nth-child(2n) {
   background: $primary-accent;
   color: #ffffff;
 }
-
 .button.dark {
   border: 1px solid #2f3542;
   background: #2f3542;
@@ -703,7 +737,7 @@ table tr:nth-child(2n) {
   border-radius: 5px;
   text-decoration: none;
   vertical-align: middle;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: .8rem;
   text-transform: uppercase;
 }
@@ -717,7 +751,76 @@ table tr:nth-child(2n) {
   color: #ffffff;
 }
 
+a.button {
+  text-decoration: none!important;
+  box-shadow: none!important;
+}
+
+
+.button.blue {
+  border: 1px solid $blue;
+  background: $blue;
+  padding: 9px 18px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  vertical-align: middle;
+  color: #ffffff !important;
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+.button.blue:hover {
+  background: $blue-accent;
+  color: #ffffff;
+}
+.button.blue:active {
+  border-color: $blue;
+  background: $blue-accent;
+  color: #ffffff;
+}
+
+
 /* Inputs */
+
+
+.multi-input .input:not(.button) {
+  border: 1px solid #8395a7;
+  background: #ffffff;
+  text-decoration: none;
+  color: #576574!important;
+  font-size: .8rem;
+}
+.multi-input .input:focus {
+  outline: none;
+}
+
+
+/* Actually Usefull Things */
+
+
+.multi-input {
+  height: min-content;
+}
+
+.multi-input .input {
+  padding: 9px 18px;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  margin: -2px;
+}
+
+.multi-input > .input:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.multi-input > .input:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 
 /* Automatically snaps to bottom of screen */
 
